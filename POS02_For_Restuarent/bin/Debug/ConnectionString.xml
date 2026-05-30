@@ -1,7 +1,7 @@
 <ConnectionStringDetails>
   <Data>
     <DataSource>Ravindu-Sandesh</DataSource>
-    <InitialCatelog>Dbs_POS02_Restaurant</InitialCatelog>
+    <InitialCatelog>POS02_For_Restuarent_CHNTH</InitialCatelog>
     <UserID>sa</UserID>
     <Password>123</Password>
   </Data>

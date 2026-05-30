@@ -63,3 +63,32 @@ E:\All Systems\All POS Systems\POS02_For_Restuarent\POS02_For_Restuarent\POS02_F
 E:\All Systems\All POS Systems\POS02_For_Restuarent\POS02_For_Restuarent\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.csproj.CoreCompileInputs.cache
 E:\All Systems\All POS Systems\POS02_For_Restuarent\POS02_For_Restuarent\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.exe
 E:\All Systems\All POS Systems\POS02_For_Restuarent\POS02_For_Restuarent\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.pdb
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\bin\Debug\POS02_For_Restuarent.exe.config
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\bin\Debug\POS02_For_Restuarent.exe
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\bin\Debug\POS02_For_Restuarent.pdb
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.csproj.AssemblyReference.cache
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmAddBarcode_Items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmAddLogin.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmAddOther_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmChoice_Barcode_or_other_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmChoose_barcode_or_other_items_toRemove.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmChoose_barcode_or_other_items_toUpdate.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmProductKey.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmQuantityConfigeOtherItems.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmRemove_Barcode_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmRemove_other_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmRemovingBarcodeItemCountConfirmation.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmSubLogin_Remove_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmSubLogin_update_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmMainForm.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmMainLogin.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmSubLogin_Add_Items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmUpdateLogin.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmUpdateOther_items.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmUpdate_barcodeItems.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmXmlCreatingDatabaseConnection.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.Properties.Resources.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.csproj.GenerateResource.cache
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.csproj.CoreCompileInputs.cache
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.exe
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.pdb

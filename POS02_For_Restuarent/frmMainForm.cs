@@ -596,6 +596,19 @@ namespace POS02_For_Restuarent
 
                         }
 
+                        // New and special modification that use for stock maangement
+                        //int count = Public_Items.Barcode_item_name_and_qty.Count;
+                        //if (count > 0)
+                        //{
+                        //    foreach (var data in Public_Items.Barcode_item_name_and_qty)
+                        //    {
+                        //        MessageBox.Show(data.ToString());
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("success", "Value note available");
+                        //}
 
                         ///
                         /// Step 05 Correct and working code

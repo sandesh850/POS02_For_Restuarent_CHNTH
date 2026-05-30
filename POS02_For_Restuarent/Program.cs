@@ -59,7 +59,7 @@ namespace POS02_For_Restuarent
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new frmMainLogin());
+                Application.Run(new frmAddBarcode_Items());
             }
             catch (Exception ex)
             {

@@ -31,6 +31,7 @@ namespace POS02_For_Restuarent
         private void frmAddBarcode_Items_Load(object sender, EventArgs e)
         {
             lblPrice_of_a_single_item.Visible = false;
+            lblPricethatIsretrievedfromthevendor.Visible = false;
         }
 
         private void frmAddBarcode_Items_Click(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace POS02_For_Restuarent
             BitemID = BitemID + 1;
 
            /// The following code use to store the data in database (TblBarcode_Items)
-           if(tbxBarcode.Text != string.Empty && tbxQty.Text != string.Empty && tbxprice.Text != string.Empty)
+           if(tbxBarcode.Text != string.Empty && tbxItemName.Text != string.Empty && tbxQty.Text != string.Empty && tbxTotalstockPrice.Text != string.Empty && tbxprice.Text != string.Empty)
            {
                 try
                 {
@@ -100,7 +101,52 @@ namespace POS02_For_Restuarent
                             cmd.Connection = con;
                             con.Open();
                             cmd.ExecuteNonQuery();//testing
+                            con.Close();
 
+                        }
+
+                        /// The following code use to store the data in database (TblStockManagementDetailsBarcodeItems)
+
+                        string date = DateTime.Now.ToShortDateString();
+                        string time = DateTime.Now.ToShortTimeString();
+
+                        ///Following code use for calculate stock ID
+                        int StockID = 0;
+
+                        Program.da = new SqlDataAdapter("SELECT TOP 1 StockID FROM TblStockManagementDetailsBarcodeItems ORDER BY StockID DESC",Program.con);
+                        Program.da.Fill(Program.ds,("TblStockID_dst"));
+
+                        if(Program.ds.Tables["TblStockID_dst"].Rows.Count == 0)
+                        {
+                            StockID = StockID + 1;
+                        }
+                        else
+                        {
+                            int stockID_retrieveFromDBS = Convert.ToInt32(Program.ds.Tables["TblStockID_dst"].Rows[0]["StockID"]);
+                            int calculated_StockID = stockID_retrieveFromDBS + 1;
+                            StockID += calculated_StockID;
+                        }
+                        //MessageBox.Show(StockID.ToString());
+                        var query02 = "INSERT INTO TblStockManagementDetailsBarcodeItems VALUES(@BarcodeItemID,@Barcode,@ItemName,@TotalStockQTY," +
+                            "@TotalStockPrice,@SellingPriceOfSingleItem,@StockID,@SingleItemPriceThatIsRetrievedFromTheVendor,@Date,@Time)";
+
+                        using (SqlCommand cmd = new SqlCommand(query02, con))
+                        {
+                            cmd.Parameters.AddWithValue("@BarcodeItemID", BitemID);
+                            cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
+                            cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
+                            cmd.Parameters.AddWithValue("@TotalStockQTY", tbxQty.Text);
+                            cmd.Parameters.AddWithValue("@TotalStockPrice", tbxTotalstockPrice.Text);
+                            cmd.Parameters.AddWithValue("@SellingPriceOfSingleItem", tbxprice.Text);
+                            cmd.Parameters.AddWithValue("@StockID", StockID);
+                            cmd.Parameters.AddWithValue("@SingleItemPriceThatIsRetrievedFromTheVendor", tbxSingleItemPriceThatIsRetrievedFromTheVendor.Text);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@Time", time);
+
+                            cmd.Connection = con;
+                            con.Open();
+                            cmd.ExecuteNonQuery();//testing
+                            con.Close();
 
                         }
                     }
@@ -112,6 +158,11 @@ namespace POS02_For_Restuarent
                     tbxQty.Clear();
                     tbxprice.Clear();
                     tbxItemName.Clear();
+                    tbxTotalstockPrice.Clear();
+                    tbxSingleItemPriceThatIsRetrievedFromTheVendor.Clear();
+                    lblTotal_Items.Visible = false;
+                    lblPricethatIsretrievedfromthevendor.Visible = false;
+                    lblPrice_of_a_single_item.Visible = false;
                 }
                 catch(Exception ex)
                 {
@@ -121,10 +172,25 @@ namespace POS02_For_Restuarent
            }
            else
            {
-                MessageBox.Show("Please fill in all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
            }
 
           
+        }
+
+        private void tbxSingleItemPriceThatIsRetrievedFromTheVendor_TextChanged(object sender, EventArgs e)
+        {
+            lblPricethatIsretrievedfromthevendor.Visible = true;
+        }
+
+        private void tbxSingleItemPriceThatIsRetrievedFromTheVendor_Leave(object sender, EventArgs e)
+        {
+            lblPricethatIsretrievedfromthevendor.Visible =  false;
+        }
+
+        private void tbxSingleItemPriceThatIsRetrievedFromTheVendor_Click(object sender, EventArgs e)
+        {
+            lblPricethatIsretrievedfromthevendor.Visible = true;
         }
     }
     
