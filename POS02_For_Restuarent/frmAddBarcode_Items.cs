@@ -61,7 +61,7 @@ namespace POS02_For_Restuarent
 
         private void btnAddItems_Click(object sender, EventArgs e)
         {
-            /// The following code use to count the Barcode Item ID (BitemID)
+            /// The following code use to count the Barcode Item ID (BitemID) for TblBarcode_Items table
             if (Program.ds.Tables["TblLastBitemID_dst"] != null)
             {
                 Program.ds.Tables["TblLastBitemID_dst"].Clear();
@@ -81,93 +81,246 @@ namespace POS02_For_Restuarent
 
             BitemID = BitemID + 1;
 
-           /// The following code use to store the data in database (TblBarcode_Items)
-           if(tbxBarcode.Text != string.Empty && tbxItemName.Text != string.Empty && tbxQty.Text != string.Empty && tbxTotalstockPrice.Text != string.Empty && tbxprice.Text != string.Empty)
+
+
+            /// The following code use to count the Barcode Item ID (BarcodeItemID) for TblStockManagementDetailsBarcodeItems table
+
+            if (Program.ds.Tables["TblLastBitemID_dst02"] != null)
+            {
+                Program.ds.Tables["TblLastBitemID_dst02"].Clear();
+            }
+
+            Program.da = new SqlDataAdapter("SELECT TOP 1 BarcodeItemID FROM TblStockManagementDetailsBarcodeItems ORDER BY BarcodeItemID DESC", Program.con);
+            Program.da.Fill(Program.ds, "TblLastBitemID_dst02");
+
+            int BitemID02 = 0;
+
+            foreach (DataRow LastBitemID in Program.ds.Tables["TblLastBitemID_dst02"].Rows)
+            {
+                BitemID02 = Convert.ToInt32(LastBitemID["BarcodeItemID"]);
+
+
+            }
+
+            BitemID02 = BitemID02 + 1;
+
+
+
+           /// The following code use to store the data in database
+           if (tbxBarcode.Text != string.Empty && tbxItemName.Text != string.Empty && tbxQty.Text != string.Empty && tbxTotalstockPrice.Text != string.Empty && tbxprice.Text != string.Empty)
            {
                 try
                 {
-                    using (SqlConnection con = SQLCon.GetConnection())
+                    ///part 01 The following code use to store the data in database (TblBarcode_Items)
+                    if (Program.ds.Tables["TblExistingBarcodeINdb_dst"] != null)
                     {
-                        var query = "INSERT INTO TblBarcode_Items VALUES(@BitemID,@Barcode,@Price,@ItemName,@Qty)";
+                        Program.ds.Tables["TblExistingBarcodeINdb_dst"].Clear();
+                    }
 
-                        using (SqlCommand cmd = new SqlCommand(query, con))
+                    Program.da = new SqlDataAdapter("SELECT Barcode FROM TblBarcode_Items WHERE Barcode='" + tbxBarcode.Text + "' ", Program.con);
+                    Program.da.Fill(Program.ds, "TblExistingBarcodeINdb_dst");
+
+                    if (Program.ds.Tables["TblExistingBarcodeINdb_dst"].Rows.Count == 0)
+                    {
+
+                        /// part 02 The following code use to store the data in database (TblBarcode_Items)
+                        using (SqlConnection con = SQLCon.GetConnection())
                         {
-                            cmd.Parameters.AddWithValue("@BitemID", BitemID);
-                            cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
-                            cmd.Parameters.AddWithValue("@Price", tbxprice.Text);
-                            cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
-                            cmd.Parameters.AddWithValue("@Qty", tbxQty.Text);
+                            var query = "INSERT INTO TblBarcode_Items VALUES(@BitemID,@Barcode,@Price,@ItemName,@Qty)";
 
-                            cmd.Connection = con;
-                            con.Open();
-                            cmd.ExecuteNonQuery();//testing
-                            con.Close();
+                            using (SqlCommand cmd = new SqlCommand(query, con))
+                            {
+                                cmd.Parameters.AddWithValue("@BitemID", BitemID);
+                                cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
+                                cmd.Parameters.AddWithValue("@Price", tbxprice.Text);
+                                cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
+                                cmd.Parameters.AddWithValue("@Qty", tbxQty.Text);
 
+                                cmd.Connection = con;
+                                con.Open();
+                                cmd.ExecuteNonQuery();//testing
+                                con.Close();
+
+                            }
                         }
 
                         /// The following code use to store the data in database (TblStockManagementDetailsBarcodeItems)
-                        if (Program.ds.Tables["TblStockID_dst"] != null)
+                        using (SqlConnection con = SQLCon.GetConnection())
                         {
-                            Program.ds.Tables["TblStockID_dst"].Clear();
+
+                            if (Program.ds.Tables["TblStockID_dst"] != null)
+                            {
+                                Program.ds.Tables["TblStockID_dst"].Clear();
+                            }
+
+
+                            string date = DateTime.Now.ToShortDateString();
+                            string time = DateTime.Now.ToShortTimeString();
+
+                            ///Following code use for calculate stock ID
+                            int StockID = 0;
+
+                            Program.da = new SqlDataAdapter("SELECT TOP 1 StockID FROM TblStockManagementDetailsBarcodeItems ORDER BY StockID DESC", Program.con);
+                            Program.da.Fill(Program.ds, ("TblStockID_dst"));
+
+                            if (Program.ds.Tables["TblStockID_dst"].Rows.Count == 0)
+                            {
+                                StockID = StockID + 1;
+                            }
+                            else
+                            {
+                                int stockID_retrieveFromDBS = Convert.ToInt32(Program.ds.Tables["TblStockID_dst"].Rows[0]["StockID"]);
+                                int calculated_StockID = stockID_retrieveFromDBS + 1;
+                                StockID += calculated_StockID;
+                            }
+                            //MessageBox.Show(StockID.ToString());
+                            var query02 = "INSERT INTO TblStockManagementDetailsBarcodeItems VALUES(@BarcodeItemID,@Barcode,@ItemName,@TotalStockQTY," +
+                                "@TotalStockPrice,@SellingPriceOfSingleItem,@StockID,@SingleItemPriceThatIsRetrievedFromTheVendor,@Date,@Time)";
+
+                            using (SqlCommand cmd = new SqlCommand(query02, con))
+                            {
+                                cmd.Parameters.AddWithValue("@BarcodeItemID", BitemID02);
+                                cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
+                                cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
+                                cmd.Parameters.AddWithValue("@TotalStockQTY", tbxQty.Text);
+                                cmd.Parameters.AddWithValue("@TotalStockPrice", tbxTotalstockPrice.Text);
+                                cmd.Parameters.AddWithValue("@SellingPriceOfSingleItem", tbxprice.Text);
+                                cmd.Parameters.AddWithValue("@StockID", StockID);
+                                cmd.Parameters.AddWithValue("@SingleItemPriceThatIsRetrievedFromTheVendor", tbxSingleItemPriceThatIsRetrievedFromTheVendor.Text);
+                                cmd.Parameters.AddWithValue("@Date", date);
+                                cmd.Parameters.AddWithValue("@Time", time);
+
+                                cmd.Connection = con;
+                                con.Open();
+                                cmd.ExecuteNonQuery();//testing
+                                con.Close();
+
+                            }
                         }
 
 
-                        string date = DateTime.Now.ToShortDateString();
-                        string time = DateTime.Now.ToShortTimeString();
 
-                        ///Following code use for calculate stock ID
-                        int StockID = 0;
+                        MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbxBarcode.Clear();
+                        tbxQty.Clear();
+                        tbxprice.Clear();
+                        tbxItemName.Clear();
+                        tbxTotalstockPrice.Clear();
+                        tbxSingleItemPriceThatIsRetrievedFromTheVendor.Clear();
+                        lblTotal_Items.Visible = false;
+                        lblPricethatIsretrievedfromthevendor.Visible = false;
+                        lblPrice_of_a_single_item.Visible = false;
 
-                        Program.da = new SqlDataAdapter("SELECT TOP 1 StockID FROM TblStockManagementDetailsBarcodeItems ORDER BY StockID DESC",Program.con);
-                        Program.da.Fill(Program.ds,("TblStockID_dst"));
 
-                        if(Program.ds.Tables["TblStockID_dst"].Rows.Count == 0)
+                    }
+                    else
+                    {
+                        /// following code use for update Qty in TblBarcode_Items table
+                        if (Program.ds.Tables["TblExistingBarcodeQtyINdb_dst"] != null)
                         {
-                            StockID = StockID + 1;
+                            Program.ds.Tables["TblExistingBarcodeQtyINdb_dst"].Clear();
                         }
-                        else
+
+                        Program.da = new SqlDataAdapter("SELECT Barcode,Qty FROM TblBarcode_Items WHERE Barcode='" + tbxBarcode.Text + "' ", Program.con);
+                        Program.da.Fill(Program.ds, "TblExistingBarcodeQtyINdb_dst");
+
+                        var barcodeFromDb = Program.ds.Tables["TblExistingBarcodeQtyINdb_dst"].Rows[0]["Barcode"];
+
+                        int dbQty = 0;
+                        dbQty = Convert.ToInt16(Program.ds.Tables["TblExistingBarcodeQtyINdb_dst"].Rows[0]["Qty"]);
+
+                        int newQty = 0;
+                        newQty = dbQty + Convert.ToInt16(tbxQty.Text);
+
+                        //MessageBox.Show(barcodeFromDb.ToString());
+                        //MessageBox.Show(dbQty.ToString());
+
+                        using (SqlConnection con = SQLCon.GetConnection())
                         {
-                            int stockID_retrieveFromDBS = Convert.ToInt32(Program.ds.Tables["TblStockID_dst"].Rows[0]["StockID"]);
-                            int calculated_StockID = stockID_retrieveFromDBS + 1;
-                            StockID += calculated_StockID;
-                        }
-                        //MessageBox.Show(StockID.ToString());
-                        var query02 = "INSERT INTO TblStockManagementDetailsBarcodeItems VALUES(@BarcodeItemID,@Barcode,@ItemName,@TotalStockQTY," +
-                            "@TotalStockPrice,@SellingPriceOfSingleItem,@StockID,@SingleItemPriceThatIsRetrievedFromTheVendor,@Date,@Time)";
+                            var updateQuery = "UPDATE TblBarcode_Items SET Qty = @UpdatedQty WHERE Barcode = @barcode";
 
-                        using (SqlCommand cmd = new SqlCommand(query02, con))
+                            using (SqlCommand cmd = new SqlCommand(updateQuery, con))
+                            {
+                                cmd.Parameters.AddWithValue("@UpdatedQty", newQty);
+                                cmd.Parameters.AddWithValue("@barcode", barcodeFromDb);
+
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
+
+                        /// The following code use to store the data in database (TblStockManagementDetailsBarcodeItems)
+                        using (SqlConnection con = SQLCon.GetConnection())
                         {
-                            cmd.Parameters.AddWithValue("@BarcodeItemID", BitemID);
-                            cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
-                            cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
-                            cmd.Parameters.AddWithValue("@TotalStockQTY", tbxQty.Text);
-                            cmd.Parameters.AddWithValue("@TotalStockPrice", tbxTotalstockPrice.Text);
-                            cmd.Parameters.AddWithValue("@SellingPriceOfSingleItem", tbxprice.Text);
-                            cmd.Parameters.AddWithValue("@StockID", StockID);
-                            cmd.Parameters.AddWithValue("@SingleItemPriceThatIsRetrievedFromTheVendor", tbxSingleItemPriceThatIsRetrievedFromTheVendor.Text);
-                            cmd.Parameters.AddWithValue("@Date", date);
-                            cmd.Parameters.AddWithValue("@Time", time);
 
-                            cmd.Connection = con;
-                            con.Open();
-                            cmd.ExecuteNonQuery();//testing
-                            con.Close();
+                            if (Program.ds.Tables["TblStockID_dst"] != null)
+                            {
+                                Program.ds.Tables["TblStockID_dst"].Clear();
+                            }
 
+
+                            string date = DateTime.Now.ToShortDateString();
+                            string time = DateTime.Now.ToShortTimeString();
+
+                            ///Following code use for calculate stock ID
+                            int StockID = 0;
+
+                            Program.da = new SqlDataAdapter("SELECT TOP 1 StockID FROM TblStockManagementDetailsBarcodeItems ORDER BY StockID DESC", Program.con);
+                            Program.da.Fill(Program.ds, ("TblStockID_dst"));
+
+                            if (Program.ds.Tables["TblStockID_dst"].Rows.Count == 0)
+                            {
+                                StockID = StockID + 1;
+                            }
+                            else
+                            {
+                                int stockID_retrieveFromDBS = Convert.ToInt32(Program.ds.Tables["TblStockID_dst"].Rows[0]["StockID"]);
+                                int calculated_StockID = stockID_retrieveFromDBS + 1;
+                                StockID += calculated_StockID;
+                            }
+                            //MessageBox.Show(StockID.ToString());
+                            var query02 = "INSERT INTO TblStockManagementDetailsBarcodeItems VALUES(@BarcodeItemID,@Barcode,@ItemName,@TotalStockQTY," +
+                                "@TotalStockPrice,@SellingPriceOfSingleItem,@StockID,@SingleItemPriceThatIsRetrievedFromTheVendor,@Date,@Time)";
+
+                            using (SqlCommand cmd = new SqlCommand(query02, con))
+                            {
+                                cmd.Parameters.AddWithValue("@BarcodeItemID", BitemID02);
+                                cmd.Parameters.AddWithValue("@Barcode", tbxBarcode.Text);
+                                cmd.Parameters.AddWithValue("@ItemName", tbxItemName.Text);
+                                cmd.Parameters.AddWithValue("@TotalStockQTY", tbxQty.Text);
+                                cmd.Parameters.AddWithValue("@TotalStockPrice", tbxTotalstockPrice.Text);
+                                cmd.Parameters.AddWithValue("@SellingPriceOfSingleItem", tbxprice.Text);
+                                cmd.Parameters.AddWithValue("@StockID", StockID);
+                                cmd.Parameters.AddWithValue("@SingleItemPriceThatIsRetrievedFromTheVendor", tbxSingleItemPriceThatIsRetrievedFromTheVendor.Text);
+                                cmd.Parameters.AddWithValue("@Date", date);
+                                cmd.Parameters.AddWithValue("@Time", time);
+
+                                cmd.Connection = con;
+                                con.Open();
+                                cmd.ExecuteNonQuery();//testing
+                                con.Close();
+
+                            }
                         }
+
+
+
+                        MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbxBarcode.Clear();
+                        tbxQty.Clear();
+                        tbxprice.Clear();
+                        tbxItemName.Clear();
+                        tbxTotalstockPrice.Clear();
+                        tbxSingleItemPriceThatIsRetrievedFromTheVendor.Clear();
+                        lblTotal_Items.Visible = false;
+                        lblPricethatIsretrievedfromthevendor.Visible = false;
+                        lblPrice_of_a_single_item.Visible = false;
+
                     }
 
+                 
 
-
-                    MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbxBarcode.Clear();
-                    tbxQty.Clear();
-                    tbxprice.Clear();
-                    tbxItemName.Clear();
-                    tbxTotalstockPrice.Clear();
-                    tbxSingleItemPriceThatIsRetrievedFromTheVendor.Clear();
-                    lblTotal_Items.Visible = false;
-                    lblPricethatIsretrievedfromthevendor.Visible = false;
-                    lblPrice_of_a_single_item.Visible = false;
                 }
                 catch(Exception ex)
                 {
