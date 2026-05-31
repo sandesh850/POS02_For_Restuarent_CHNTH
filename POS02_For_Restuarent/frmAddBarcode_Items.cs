@@ -106,6 +106,11 @@ namespace POS02_For_Restuarent
                         }
 
                         /// The following code use to store the data in database (TblStockManagementDetailsBarcodeItems)
+                        if (Program.ds.Tables["TblStockID_dst"] != null)
+                        {
+                            Program.ds.Tables["TblStockID_dst"].Clear();
+                        }
+
 
                         string date = DateTime.Now.ToShortDateString();
                         string time = DateTime.Now.ToShortTimeString();

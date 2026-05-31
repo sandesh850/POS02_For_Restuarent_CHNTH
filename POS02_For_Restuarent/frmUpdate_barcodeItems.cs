@@ -160,7 +160,8 @@ namespace POS02_For_Restuarent
 
                             con.Open();
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("Successfully updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            con.Close();
 
                             tbxBarcode.Clear();
                             tbxQty.Clear();

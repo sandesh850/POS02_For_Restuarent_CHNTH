@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace POS02_For_Restuarent
 {
-   
+
     public partial class frmMainForm : Form
     {
         // Public_Items public_Items = new Public_Items();
@@ -20,11 +20,11 @@ namespace POS02_For_Restuarent
         public frmMainForm()
         {
             InitializeComponent();
-           
-            
+
+
         }
 
-       
+
 
         private void btnAddItems_Click(object sender, EventArgs e)
         {
@@ -69,14 +69,14 @@ namespace POS02_For_Restuarent
                 Program.ds.Tables["TblLastCount_dst"].Clear();
             }
 
-            Program.da = new SqlDataAdapter("SELECT TOP 1 count FROM Tbltracking ORDER BY count DESC",Program.con);
+            Program.da = new SqlDataAdapter("SELECT TOP 1 count FROM Tbltracking ORDER BY count DESC", Program.con);
             Program.da.Fill(Program.ds, "TblLastCount_dst");
 
             int rowCount = 0;
             rowCount = Program.ds.Tables["TblLastCount_dst"].Rows.Count;
 
             int LCount = 0;
-            if(rowCount > 0)
+            if (rowCount > 0)
             {
                 LCount = Convert.ToInt32(Program.ds.Tables["TblLastCount_dst"].Rows[0]["count"]);
             }
@@ -90,9 +90,9 @@ namespace POS02_For_Restuarent
 
             if (LCount >= 30)
             {
-                
-                MessageBox.Show("Limit Exceeded","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-              
+
+                MessageBox.Show("Limit Exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 frmProductKey productKey = new frmProductKey();
                 productKey.ShowDialog();
             }
@@ -110,7 +110,7 @@ namespace POS02_For_Restuarent
             int dateCounting = 0;
             string dateAvailability_Checking = "";
 
-            Program.da = new SqlDataAdapter("SELECT * FROM Tbltracking",Program.con);
+            Program.da = new SqlDataAdapter("SELECT * FROM Tbltracking", Program.con);
             Program.da.Fill(Program.ds, "Tbltracking_dst");
 
             if (Program.ds.Tables["Tbltracking_dst"].Rows.Count <= 0)// This code use to calculate and insert date and date count in first running
@@ -119,7 +119,7 @@ namespace POS02_For_Restuarent
 
                 Program.cmd.Connection = Program.con;
                 Program.con.Open();
-                Program.cmd.CommandText = "INSERT INTO Tbltracking VALUES('"+Today+"', '"+dateCounting+"') ";
+                Program.cmd.CommandText = "INSERT INTO Tbltracking VALUES('" + Today + "', '" + dateCounting + "') ";
                 Program.cmd.ExecuteNonQuery();
                 Program.con.Close();
 
@@ -131,11 +131,11 @@ namespace POS02_For_Restuarent
                 // reord inserting. Also main goal is this finding the current date is existing in database
                 foreach (DataRow data in Program.ds.Tables["Tbltracking_dst"].Rows)
                 {
-                    DateTime checkingDates = Convert.ToDateTime( data["Date"]);
+                    DateTime checkingDates = Convert.ToDateTime(data["Date"]);
 
                     if (checkingDates.ToShortDateString() != Today)
                     {
-                       
+
                         dateAvailability_Checking = "no";
                     }
                     else
@@ -154,7 +154,7 @@ namespace POS02_For_Restuarent
                 }
 
                 Program.da = new SqlDataAdapter("SELECT TOP 1 count FROM Tbltracking ORDER BY count DESC", Program.con);
-                Program.da.Fill(Program.ds,"TblLastCount_dst");
+                Program.da.Fill(Program.ds, "TblLastCount_dst");
 
                 int lastCount = 0;
                 lastCount = Convert.ToInt16(Program.ds.Tables["TblLastCount_dst"].Rows[0]["count"]);
@@ -182,10 +182,10 @@ namespace POS02_For_Restuarent
             Program.da = new SqlDataAdapter("SELECT TOP 1 Bill_no FROM TblBills ORDER BY Bill_no DESC", Program.con);
             Program.da.Fill(Program.ds, "TBLlast_bill_No_dst");
 
-            int Last_bill_No = 0;  
+            int Last_bill_No = 0;
             int Row_count = Program.ds.Tables["TBLlast_bill_No_dst"].Rows.Count;
 
-            if(Row_count <= 0)
+            if (Row_count <= 0)
             {
                 Last_bill_No++;
             }
@@ -196,7 +196,7 @@ namespace POS02_For_Restuarent
 
             }
 
-           lblBill_No.Text = Last_bill_No.ToString();
+            lblBill_No.Text = Last_bill_No.ToString();
 
             //Following code is used to show the task bar without any issue
             // Set the form to maximize without covering the taskbar
@@ -225,7 +225,7 @@ namespace POS02_For_Restuarent
             }
 
             // Step 02 || Display bill details in data grid view
-            Program.da = new SqlDataAdapter("SELECT * FROM TblBills",Program.con);
+            Program.da = new SqlDataAdapter("SELECT * FROM TblBills", Program.con);
             Program.da.Fill(Program.ds, "TblBills_dst");
 
             Dgv.DataSource = Program.ds.Tables["TblBills_dst"];
@@ -235,14 +235,14 @@ namespace POS02_For_Restuarent
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if(tbxSearch.Text == string.Empty || tbxSearch.Text == "Search")
+            if (tbxSearch.Text == string.Empty || tbxSearch.Text == "Search")
             {
-                MessageBox.Show("Please select a item","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select a item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
 
-                if(lbxIncluded_items_to_the_bill.Items.Count == 0)
+                if (lbxIncluded_items_to_the_bill.Items.Count == 0)
                 {
                     Public_Items.ItemNames = tbxSearch.Text;// used to retrieve and display item name in tbx in frmQuantityConfiguration form
 
@@ -263,7 +263,7 @@ namespace POS02_For_Restuarent
 
 
                         }
-                       
+
 
                     }
 
@@ -294,7 +294,7 @@ namespace POS02_For_Restuarent
 
 
             }
-           
+
         }
 
         private void btnLoginConfig_Click(object sender, EventArgs e)
@@ -359,7 +359,7 @@ namespace POS02_For_Restuarent
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -374,14 +374,14 @@ namespace POS02_For_Restuarent
                     tbxSearch.Text = lbxNone_barcode_Items_search.SelectedItem.ToString();
                 }
 
-                
+
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message);
             }
-           
-            
+
+
         }
 
         private void lbxIncluded_items_to_the_bill_SelectedIndexChanged(object sender, EventArgs e)
@@ -391,7 +391,7 @@ namespace POS02_For_Restuarent
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-           
+
 
             /// 
             /// Statep 01
@@ -470,7 +470,7 @@ namespace POS02_For_Restuarent
                 {
                     // use to calculate and check the total value and balance value is correctly calculated or not
                     double TotalPrice = 0;
-                    double paindAmount =0;
+                    double paindAmount = 0;
                     double balance = 0;
 
                     if (Convert.ToDouble(tbxPaidAmount.Text) < Convert.ToDouble(tbxTotal.Text))
@@ -488,7 +488,7 @@ namespace POS02_For_Restuarent
                     {
                         paindAmount = Convert.ToDouble(tbxPaidAmount.Text);
                     }
-                   
+
                     balance = paindAmount - TotalPrice;
 
 
@@ -503,14 +503,14 @@ namespace POS02_For_Restuarent
                         MessageBox.Show("Please enter the paid amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         tbxPaidAmount.Focus();
                     }
-                    else if(tbxBalance.Text == string.Empty)
+                    else if (tbxBalance.Text == string.Empty)
                     {
                         MessageBox.Show("Please Calculate the Balance (Click on OK Button)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         tbxBalance.Focus();
                     }
-                    if(balance != Convert.ToDouble(tbxBalance.Text))
+                    if (balance != Convert.ToDouble(tbxBalance.Text))
                     {
-                        MessageBox.Show("!! Please calculate the balance !! (Click on OK Button)", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("!! Please calculate the balance !! (Click on OK Button)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         btnOK.Focus();
                     }
                     else
@@ -582,33 +582,77 @@ namespace POS02_For_Restuarent
                                         //MessageBox.Show(Public_Items.Barcode_item_name_and_qty[ItemNameThatUsedToFindQTY].ToString());
                                     }
 
-                                   
+
 
                                 }
 
-                               
+
                                 Public_Items.barcode_item_names.Remove(ItemNameThatUsedToFindQTY);
                                 ItemNameThatUsedToFindQTY = "";
                                 qty_of_one_item = 0;
-                                
+
 
                             }
 
                         }
 
                         // New and special modification that use for stock maangement
-                        //int count = Public_Items.Barcode_item_name_and_qty.Count;
-                        //if (count > 0)
-                        //{
-                        //    foreach (var data in Public_Items.Barcode_item_name_and_qty)
-                        //    {
-                        //        MessageBox.Show(data.ToString());
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("success", "Value note available");
-                        //}
+                        if (Program.ds.Tables["TbldataFromDatabase_dst"] != null)
+                        {
+                            Program.ds.Tables["TbldataFromDatabase_dst"].Clear();
+                        }
+
+                        int count = Public_Items.Barcode_item_name_and_qty.Count;
+                        if (count > 0)
+                        {
+                            foreach (var data in Public_Items.Barcode_item_name_and_qty)
+                            {
+                                Program.ds.Tables["TbldataFromDatabase_dst"]?.Clear();
+
+                                string item_name = "";
+                                int item_qty = 0;
+
+                                item_name = data.Key;
+                                item_qty = data.Value;
+
+                                Program.da = new SqlDataAdapter("SELECT ItemName,Qty FROM TblBarcode_Items WHERE ItemName='" + item_name+"' ",Program.con);
+                                Program.da.Fill(Program.ds, "TbldataFromDatabase_dst");
+
+                                foreach (DataRow row in Program.ds.Tables["TbldataFromDatabase_dst"].Rows)
+                                {
+                                    string dbItemName = row["ItemName"].ToString();
+                                    int dbItemQty = Convert.ToInt32(row["Qty"]);
+
+                                    int newQty = 0;
+                                    newQty = dbItemQty - item_qty;
+
+                                    using (SqlConnection con = SQLCon.GetConnection())
+                                    {
+                                        var query = "UPDATE TblBarcode_Items SET Qty =@qty WHERE ItemName = @ITMN";
+                                        using(SqlCommand cmd = new SqlCommand(query, con))
+                                        {
+                                            cmd.Parameters.AddWithValue("@qty",newQty);
+                                            cmd.Parameters.AddWithValue("@ITMN", item_name);
+
+                                            con.Open();
+                                            cmd.ExecuteNonQuery();
+                                            //MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            con.Close();
+                                        }
+
+                                       
+                                    }
+
+                                    //MessageBox.Show($" key:{data.Key} \nvalue:{newQty.ToString()}");
+                                }
+
+                               
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("success", "Value note available");
+                        }
 
                         ///
                         /// Step 05 Correct and working code
@@ -626,20 +670,16 @@ namespace POS02_For_Restuarent
 
                     }
                 }
-
-               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
 
-           
-
-          
 
         }
-
+ 
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
