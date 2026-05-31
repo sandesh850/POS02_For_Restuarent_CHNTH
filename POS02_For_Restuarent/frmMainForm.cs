@@ -596,7 +596,7 @@ namespace POS02_For_Restuarent
 
                         }
 
-                        // New and special modification that use for stock maangement
+                        // New and special modification that use for stock maangement in barcode items
                         if (Program.ds.Tables["TbldataFromDatabase_dst"] != null)
                         {
                             Program.ds.Tables["TbldataFromDatabase_dst"].Clear();

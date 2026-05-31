@@ -68,6 +68,12 @@
     <Compile Include="frmAddBarcode_Items.Designer.cs">
       <DependentUpon>frmAddBarcode_Items.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddKitchenInventoryDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddKitchenInventoryDetails.Designer.cs">
+      <DependentUpon>frmAddKitchenInventoryDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddBarcode_Items.resx">
       <DependentUpon>frmAddBarcode_Items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddKitchenInventoryDetails.resx">
+      <DependentUpon>frmAddKitchenInventoryDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddLogin.resx">
       <DependentUpon>frmAddLogin.cs</DependentUpon>

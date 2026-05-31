@@ -32,6 +32,7 @@
             this.btnAdd_barcode_items = new System.Windows.Forms.Button();
             this.btnAdd_non_barcode_items = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd_barcode_items
@@ -71,12 +72,26 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Select an action ";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Perpetua", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(103, 251);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(495, 75);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Add Kitchen Inventory Details";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmChoice_Barcode_or_other_items
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(681, 342);
+            this.ClientSize = new System.Drawing.Size(681, 387);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd_non_barcode_items);
             this.Controls.Add(this.btnAdd_barcode_items);
@@ -96,5 +111,6 @@
         private System.Windows.Forms.Button btnAdd_barcode_items;
         private System.Windows.Forms.Button btnAdd_non_barcode_items;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

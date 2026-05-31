@@ -30,6 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddBarcode_Items));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblPricethatIsretrievedfromthevendor = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbxTotalstockPrice = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tbxItemName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,13 +53,6 @@
             this.tbxBarcode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbxTotalstockPrice = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblPricethatIsretrievedfromthevendor = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +87,69 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Item details";
+            // 
+            // lblPricethatIsretrievedfromthevendor
+            // 
+            this.lblPricethatIsretrievedfromthevendor.AutoSize = true;
+            this.lblPricethatIsretrievedfromthevendor.ForeColor = System.Drawing.Color.Crimson;
+            this.lblPricethatIsretrievedfromthevendor.Location = new System.Drawing.Point(419, 380);
+            this.lblPricethatIsretrievedfromthevendor.Name = "lblPricethatIsretrievedfromthevendor";
+            this.lblPricethatIsretrievedfromthevendor.Size = new System.Drawing.Size(338, 20);
+            this.lblPricethatIsretrievedfromthevendor.TabIndex = 23;
+            this.lblPricethatIsretrievedfromthevendor.Text = "(Price that\'s retrieved from the vendor)";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(382, 344);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 20);
+            this.label10.TabIndex = 22;
+            this.label10.Text = ":";
+            // 
+            // tbxSingleItemPriceThatIsRetrievedFromTheVendor
+            // 
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Location = new System.Drawing.Point(424, 341);
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Name = "tbxSingleItemPriceThatIsRetrievedFromTheVendor";
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Size = new System.Drawing.Size(295, 27);
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.TabIndex = 4;
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Click += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_Click);
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.TextChanged += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_TextChanged);
+            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Leave += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_Leave);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(79, 344);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(153, 20);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Single Item Price";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(382, 290);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(15, 20);
+            this.label12.TabIndex = 19;
+            this.label12.Text = ":";
+            // 
+            // tbxTotalstockPrice
+            // 
+            this.tbxTotalstockPrice.Location = new System.Drawing.Point(424, 287);
+            this.tbxTotalstockPrice.Name = "tbxTotalstockPrice";
+            this.tbxTotalstockPrice.Size = new System.Drawing.Size(295, 27);
+            this.tbxTotalstockPrice.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(79, 290);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(154, 20);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Total Stock Price";
             // 
             // label8
             // 
@@ -169,7 +232,7 @@
             this.btnAddItems.Location = new System.Drawing.Point(83, 501);
             this.btnAddItems.Name = "btnAddItems";
             this.btnAddItems.Size = new System.Drawing.Size(636, 39);
-            this.btnAddItems.TabIndex = 4;
+            this.btnAddItems.TabIndex = 6;
             this.btnAddItems.Text = "Add";
             this.btnAddItems.UseVisualStyleBackColor = false;
             this.btnAddItems.Click += new System.EventHandler(this.btnAddItems_Click);
@@ -179,7 +242,7 @@
             this.tbxprice.Location = new System.Drawing.Point(424, 414);
             this.tbxprice.Name = "tbxprice";
             this.tbxprice.Size = new System.Drawing.Size(295, 27);
-            this.tbxprice.TabIndex = 3;
+            this.tbxprice.TabIndex = 5;
             this.tbxprice.Click += new System.EventHandler(this.tbxprice_Click);
             this.tbxprice.TextChanged += new System.EventHandler(this.tbxprice_TextChanged);
             this.tbxprice.Leave += new System.EventHandler(this.tbxprice_Leave);
@@ -238,69 +301,6 @@
             this.label1.Size = new System.Drawing.Size(391, 50);
             this.label1.TabIndex = 1;
             this.label1.Text = "Add barcode items";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(382, 290);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(15, 20);
-            this.label12.TabIndex = 19;
-            this.label12.Text = ":";
-            // 
-            // tbxTotalstockPrice
-            // 
-            this.tbxTotalstockPrice.Location = new System.Drawing.Point(424, 287);
-            this.tbxTotalstockPrice.Name = "tbxTotalstockPrice";
-            this.tbxTotalstockPrice.Size = new System.Drawing.Size(295, 27);
-            this.tbxTotalstockPrice.TabIndex = 17;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(79, 290);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(154, 20);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "Total Stock Price";
-            // 
-            // lblPricethatIsretrievedfromthevendor
-            // 
-            this.lblPricethatIsretrievedfromthevendor.AutoSize = true;
-            this.lblPricethatIsretrievedfromthevendor.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPricethatIsretrievedfromthevendor.Location = new System.Drawing.Point(419, 380);
-            this.lblPricethatIsretrievedfromthevendor.Name = "lblPricethatIsretrievedfromthevendor";
-            this.lblPricethatIsretrievedfromthevendor.Size = new System.Drawing.Size(338, 20);
-            this.lblPricethatIsretrievedfromthevendor.TabIndex = 23;
-            this.lblPricethatIsretrievedfromthevendor.Text = "(Price that\'s retrieved from the vendor)";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(382, 344);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 20);
-            this.label10.TabIndex = 22;
-            this.label10.Text = ":";
-            // 
-            // tbxSingleItemPriceThatIsRetrievedFromTheVendor
-            // 
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Location = new System.Drawing.Point(424, 341);
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Name = "tbxSingleItemPriceThatIsRetrievedFromTheVendor";
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Size = new System.Drawing.Size(295, 27);
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.TabIndex = 20;
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Click += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_Click);
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.TextChanged += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_TextChanged);
-            this.tbxSingleItemPriceThatIsRetrievedFromTheVendor.Leave += new System.EventHandler(this.tbxSingleItemPriceThatIsRetrievedFromTheVendor_Leave);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(79, 344);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(153, 20);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Single Item Price";
             // 
             // frmAddBarcode_Items
             // 

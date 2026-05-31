@@ -28,5 +28,11 @@ namespace POS02_For_Restuarent
             frmAddOther_items add = new frmAddOther_items();
             add.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmAddKitchenInventoryDetails kitchenItem = new frmAddKitchenInventoryDetails();
+            kitchenItem.ShowDialog();
+        }
     }
 }
