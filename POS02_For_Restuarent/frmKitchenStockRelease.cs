@@ -39,7 +39,7 @@ namespace POS02_For_Restuarent
                 Program.ds.Tables["TblItemNames_dst"].Clear();
             }
 
-            Program.da = new System.Data.SqlClient.SqlDataAdapter("SELECT ITEM_NAME FROM TblStockManagementDetailsKitchenInventory", Program.con);
+            Program.da = new System.Data.SqlClient.SqlDataAdapter("SELECT ITEM_NAME FROM TblStockManagementDKInventory_use_for_functions", Program.con);
             Program.da.Fill(Program.ds, "TblItemNames_dst");
 
             foreach (DataRow itemName in Program.ds.Tables["TblItemNames_dst"].Rows)
@@ -64,7 +64,7 @@ namespace POS02_For_Restuarent
 
             Dictionary<string,int> StockDetails = new Dictionary<string,int>();// this use to store the available qty of selected stock item
 
-            Program.da = new System.Data.SqlClient.SqlDataAdapter("SELECT ITEM_NAME,Unit,QTY FROM TblStockManagementDetailsKitchenInventory WHERE ITEM_NAME='" + lbxItemNames.SelectedItem + "'  ", Program.con);
+            Program.da = new System.Data.SqlClient.SqlDataAdapter("SELECT ITEM_NAME,Unit,QTY,StockID FROM TblStockManagementDKInventory_use_for_functions WHERE ITEM_NAME='" + lbxItemNames.SelectedItem + "'  ", Program.con);
             Program.da.Fill(Program.ds, "Tbl_Items_details_dst");
 
             foreach (DataRow data in Program.ds.Tables["Tbl_Items_details_dst"].Rows)
@@ -91,6 +91,8 @@ namespace POS02_For_Restuarent
                 tbxAvailableStock.Text = itm.Value.ToString();
                 availableQty = Convert.ToDouble(tbxAvailableStock.Text);
             }
+
+            //tbxStockID.Text = Program.ds.Tables["Tbl_Items_details_dst"].Rows[0]["StockID"].ToString();
             //string message = "";
 
             //foreach (var item in StockDetails)
@@ -164,6 +166,45 @@ namespace POS02_For_Restuarent
                             con.Close();
                         }
                     }
+
+                    /// The following code use for reduse the release qty from TblStockManagementDKInventory_use_for_functions
+                    if (Program.ds.Tables["TblDetails_dst"] != null)
+                    {
+                        Program.ds.Tables["TblDetails_dst"].Clear();
+                    }
+
+                    Program.da = new SqlDataAdapter("SELECT QTY,StockID FROM TblStockManagementDKInventory_use_for_functions WHERE ITEM_NAME='" + tbxItemName.Text+"' ", Program.con);
+                    Program.da.Fill(Program.ds, "TblDetails_dst");
+
+                    foreach(DataRow data in Program.ds.Tables["TblDetails_dst"].Rows)
+                    {
+                        int valuefromDB = Convert.ToInt32(data["QTY"]);
+                        int releaseQty = Convert.ToInt32(tbxReleaseQty.Text);
+
+                        if (valuefromDB == 0 || valuefromDB < releaseQty)
+                        {
+                            
+                        }
+                        else
+                        {
+                            int stockID = Convert.ToInt16(data["StockID"]);
+                            using (SqlConnection con = SQLCon.GetConnection())
+                            {
+                                var update = "UPDATE TblStockManagementDKInventory_use_for_functions SET QTY = @qty WHERE StockID = @Stockid";
+                                using(SqlCommand cmd = new SqlCommand(update, con))
+                                {
+                                    cmd.Parameters.AddWithValue("@qty",valuefromDB - Convert.ToInt16(tbxReleaseQty.Text));
+                                    cmd.Parameters.AddWithValue("@Stockid",stockID);
+
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+                                  
+                                }
+                            }
+                        }
+                    }
+
 
                     MessageBox.Show("Successfully Released", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmbUnit.Text = "Please Select";

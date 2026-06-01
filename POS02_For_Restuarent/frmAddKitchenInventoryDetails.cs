@@ -68,13 +68,46 @@ namespace POS02_For_Restuarent
                     }
 
 
-                    /// The following code use for insert data into database
+                    /// The following code use for insert data into database (TblStockManagementDetailsKitchenInventory)
                     var date = DateTime.Now.ToShortDateString();
                     var time = DateTime.Now.ToShortTimeString();
 
                     using (SqlConnection con = SQLCon.GetConnection())
                     {
                         var query = "INSERT INTO TblStockManagementDetailsKitchenInventory VALUES(@RecordID,@ITEM_NAME,@QTY,@Unit,@Unit_Price" +
+                            ",@TotalQTYPrice,@StockID,@Date,@Time)";
+
+                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@RecordID", RecordID);
+                            cmd.Parameters.AddWithValue("@ITEM_NAME", tbxItemName.Text);
+                            cmd.Parameters.AddWithValue("@QTY", tbxQTY.Text);
+                            cmd.Parameters.AddWithValue("@Unit", cmbUnit.Text);
+                            cmd.Parameters.AddWithValue("@Unit_Price", tbxUnitPrice.Text);
+                            cmd.Parameters.AddWithValue("@TotalQTYPrice", tbxTotalQtyPrice.Text);
+                            cmd.Parameters.AddWithValue("@StockID", StockID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@Time", time);
+
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            // MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //cmbUnit.Text = "Select The Unit";
+                            //tbxItemName.Clear();
+                            //tbxQTY.Clear();
+                            //tbxUnitPrice.Clear();
+                            //tbxTotalQtyPrice.Clear();
+
+                        }
+
+                    }
+
+                    /// The following code use for insert data into database (TblStockManagementDKInventory_use_for_functions)
+                    using (SqlConnection con = SQLCon.GetConnection())
+                    {
+                        var query = "INSERT INTO TblStockManagementDKInventory_use_for_functions VALUES(@RecordID,@ITEM_NAME,@QTY,@Unit,@Unit_Price" +
                             ",@TotalQTYPrice,@StockID,@Date,@Time)";
 
                         using (SqlCommand cmd = new SqlCommand(query, con))
@@ -103,6 +136,7 @@ namespace POS02_For_Restuarent
                         }
 
                     }
+
                 }
                 else
                 {
