@@ -59,7 +59,7 @@ namespace POS02_For_Restuarent
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new frmMainForm());
+                Application.Run(new frmMainLogin());
             }
             catch (Exception ex)
             {
