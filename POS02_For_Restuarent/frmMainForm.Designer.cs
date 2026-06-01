@@ -50,7 +50,7 @@ namespace POS02_For_Restuarent
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.btnLoginConfig = new System.Windows.Forms.Button();
+            this.btnManagementCenter = new System.Windows.Forms.Button();
             this.btnAddItems = new System.Windows.Forms.Button();
             this.btnUpdateItems = new System.Windows.Forms.Button();
             this.btnRemoveItems = new System.Windows.Forms.Button();
@@ -274,7 +274,7 @@ namespace POS02_For_Restuarent
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btnPrint);
-            this.panel2.Controls.Add(this.btnLoginConfig);
+            this.panel2.Controls.Add(this.btnManagementCenter);
             this.panel2.Location = new System.Drawing.Point(12, 143);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(920, 100);
@@ -295,20 +295,20 @@ namespace POS02_For_Restuarent
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // btnLoginConfig
+            // btnManagementCenter
             // 
-            this.btnLoginConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoginConfig.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnLoginConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoginConfig.Font = new System.Drawing.Font("Perpetua", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoginConfig.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnLoginConfig.Location = new System.Drawing.Point(18, 29);
-            this.btnLoginConfig.Name = "btnLoginConfig";
-            this.btnLoginConfig.Size = new System.Drawing.Size(207, 47);
-            this.btnLoginConfig.TabIndex = 28;
-            this.btnLoginConfig.Text = "Login Configurations";
-            this.btnLoginConfig.UseVisualStyleBackColor = false;
-            this.btnLoginConfig.Click += new System.EventHandler(this.btnLoginConfig_Click);
+            this.btnManagementCenter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnManagementCenter.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnManagementCenter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManagementCenter.Font = new System.Drawing.Font("Perpetua", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManagementCenter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnManagementCenter.Location = new System.Drawing.Point(18, 29);
+            this.btnManagementCenter.Name = "btnManagementCenter";
+            this.btnManagementCenter.Size = new System.Drawing.Size(207, 47);
+            this.btnManagementCenter.TabIndex = 28;
+            this.btnManagementCenter.Text = "Management Center";
+            this.btnManagementCenter.UseVisualStyleBackColor = false;
+            this.btnManagementCenter.Click += new System.EventHandler(this.btnManagementCenter_Click);
             // 
             // btnAddItems
             // 
@@ -779,7 +779,7 @@ namespace POS02_For_Restuarent
         private System.Windows.Forms.DataGridView Dgv;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnLoginConfig;
+        private System.Windows.Forms.Button btnManagementCenter;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox tbxSearch;
         private System.Windows.Forms.TextBox tbxSearchIncluded_Items;

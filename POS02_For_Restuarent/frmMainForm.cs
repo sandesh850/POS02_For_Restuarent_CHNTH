@@ -297,13 +297,7 @@ namespace POS02_For_Restuarent
 
         }
 
-        private void btnLoginConfig_Click(object sender, EventArgs e)
-        {
-            tbxSearch.Text = "Search"; // Seting "Search" Value into Non-Barcode Item search bar (First search bar that use to add Non-barcode items into bill)
-
-            frmUpdateLogin updateLogin = new frmUpdateLogin();
-            updateLogin.ShowDialog();
-        }
+       
 
         private void tbxSearch_Click(object sender, EventArgs e)
         {
@@ -1459,6 +1453,16 @@ namespace POS02_For_Restuarent
         private void frmMainForm_Click(object sender, EventArgs e)
         {
             tbxSearch.Text = "Search"; // Seting "Search" Value into Non-Barcode Item search bar (First search bar that use to add Non-barcode items into bill)
+        }
+
+        private void btnManagementCenter_Click(object sender, EventArgs e)
+        {
+            tbxSearch.Text = "Search"; // Seting "Search" Value into Non-Barcode Item search bar (First search bar that use to add Non-barcode items into bill)
+
+           frmSubLoginForManagementCenter sublog = new frmSubLoginForManagementCenter();
+           sublog.ShowDialog();
+
+           
         }
     }
 }

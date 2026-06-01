@@ -27,62 +27,89 @@ namespace POS02_For_Restuarent
         {
             try
             {
-                /// This code use to calculate RecordID value
-                if (Program.ds.Tables["TblRecordID_dst"] != null)
+                if(tbxItemName.Text != string.Empty || tbxQTY.Text != string.Empty || cmbUnit.Text != "Select The Unit" || tbxUnitPrice.Text != string.Empty || tbxTotalQtyPrice.Text != string.Empty)
                 {
-                    Program.ds.Tables["TblRecordID_dst"].Clear();
-                }
+                    ///Following code use for calculate stock ID
+                    int StockID = 0;
 
-                Program.da = new SqlDataAdapter("SELECT TOP 1 RecordID FROM TblStockManagementDetailsKitchenInventory ORDER BY RecordID DESC", Program.con);
-                Program.da.Fill(Program.ds, "TblRecordID_dst");
+                    Program.da = new SqlDataAdapter("SELECT TOP 1 StockID FROM TblStockManagementDetailsKitchenInventory ORDER BY StockID DESC", Program.con);
+                    Program.da.Fill(Program.ds, ("TblStockID_dst"));
 
-                var RecordID = 0;
+                    if (Program.ds.Tables["TblStockID_dst"].Rows.Count == 0)
+                    {
+                        StockID = StockID + 1;
+                    }
+                    else
+                    {
+                        int stockID_retrieveFromDBS = Convert.ToInt32(Program.ds.Tables["TblStockID_dst"].Rows[0]["StockID"]);
+                        int calculated_StockID = stockID_retrieveFromDBS + 1;
+                        StockID += calculated_StockID;
+                    }
 
-                if (Program.ds.Tables["TblRecordID_dst"].Rows.Count == 0)
-                {
+                    /// This code use to calculate RecordID value
+                    if (Program.ds.Tables["TblRecordID_dst"] != null)
+                    {
+                        Program.ds.Tables["TblRecordID_dst"].Clear();
+                    }
 
-                    RecordID = RecordID + 1;
+                    Program.da = new SqlDataAdapter("SELECT TOP 1 RecordID FROM TblStockManagementDetailsKitchenInventory ORDER BY RecordID DESC", Program.con);
+                    Program.da.Fill(Program.ds, "TblRecordID_dst");
+
+                    var RecordID = 0;
+
+                    if (Program.ds.Tables["TblRecordID_dst"].Rows.Count == 0)
+                    {
+
+                        RecordID = RecordID + 1;
+                    }
+                    else
+                    {
+                        RecordID = Convert.ToInt16(Program.ds.Tables["TblRecordID_dst"].Rows[0]["RecordID"]) + 1;
+                    }
+
+
+                    /// The following code use for insert data into database
+                    var date = DateTime.Now.ToShortDateString();
+                    var time = DateTime.Now.ToShortTimeString();
+
+                    using (SqlConnection con = SQLCon.GetConnection())
+                    {
+                        var query = "INSERT INTO TblStockManagementDetailsKitchenInventory VALUES(@RecordID,@ITEM_NAME,@QTY,@Unit,@Unit_Price" +
+                            ",@TotalQTYPrice,@StockID,@Date,@Time)";
+
+                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@RecordID", RecordID);
+                            cmd.Parameters.AddWithValue("@ITEM_NAME", tbxItemName.Text);
+                            cmd.Parameters.AddWithValue("@QTY", tbxQTY.Text);
+                            cmd.Parameters.AddWithValue("@Unit", cmbUnit.Text);
+                            cmd.Parameters.AddWithValue("@Unit_Price", tbxUnitPrice.Text);
+                            cmd.Parameters.AddWithValue("@TotalQTYPrice", tbxTotalQtyPrice.Text);
+                            cmd.Parameters.AddWithValue("@StockID", StockID);
+                            cmd.Parameters.AddWithValue("@Date", date);
+                            cmd.Parameters.AddWithValue("@Time", time);
+
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            cmbUnit.Text = "Select The Unit";
+                            tbxItemName.Clear();
+                            tbxQTY.Clear();
+                            tbxUnitPrice.Clear();
+                            tbxTotalQtyPrice.Clear();
+
+                        }
+
+                    }
                 }
                 else
                 {
-                    RecordID = Convert.ToInt16(Program.ds.Tables["TblRecordID_dst"].Rows[0]["RecordID"]) + 1;
+                    MessageBox.Show("Please fill in all fields", "",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-
-                /// The following code use for insert data into database
-                var date = DateTime.Now.ToShortDateString();
-                var time = DateTime.Now.ToShortTimeString();
-
-                using (SqlConnection con = SQLCon.GetConnection())
-                {
-                    var query = "INSERT INTO TblStockManagementDetailsKitchenInventory VALUES(@RecordID,@ITEM_NAME,@QTY,@Unit,@Unit_Price" +
-                        ",@TotalQTYPrice,@Date,@Time)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@RecordID", RecordID);
-                        cmd.Parameters.AddWithValue("@ITEM_NAME", tbxItemName.Text);
-                        cmd.Parameters.AddWithValue("@QTY", tbxQTY.Text);
-                        cmd.Parameters.AddWithValue("@Unit", cmbUnit.Text);
-                        cmd.Parameters.AddWithValue("@Unit_Price", tbxUnitPrice.Text);
-                        cmd.Parameters.AddWithValue("@TotalQTYPrice", tbxTotalQtyPrice.Text);
-                        cmd.Parameters.AddWithValue("@Date", date);
-                        cmd.Parameters.AddWithValue("@Time", time);
-
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-
-                        MessageBox.Show("Details successfully saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        cmbUnit.Text = "Select The Unit";
-                        tbxItemName.Clear();
-                        tbxQTY.Clear();
-                        tbxUnitPrice.Clear();
-                        tbxTotalQtyPrice.Clear();
-
-                    }
-
-                }
+               
             }
             catch (Exception ex)
             {

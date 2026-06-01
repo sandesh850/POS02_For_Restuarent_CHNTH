@@ -93,3 +93,6 @@ E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Res
 E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.exe
 E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.pdb
 E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmAddKitchenInventoryDetails.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmManagementCenterNavbtns.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmSubLoginForManagementCenter.resources
+E:\All Systems\POS System for chinthaka\POS02_For_Restuarent_CHNTH\POS02_For_Restuarent\obj\Debug\POS02_For_Restuarent.frmKitchenStockRelease.resources

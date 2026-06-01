@@ -41,7 +41,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbxQTY = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblPrice_of_a_single_item = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbxUnitPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,7 +74,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.tbxQTY);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.lblPrice_of_a_single_item);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tbxUnitPrice);
             this.groupBox1.Controls.Add(this.label4);
@@ -86,7 +84,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Modern No. 20", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(74, 140);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(635, 495);
+            this.groupBox1.Size = new System.Drawing.Size(635, 482);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Details";
@@ -94,7 +92,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(236, 343);
+            this.label10.Location = new System.Drawing.Point(236, 319);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(14, 20);
             this.label10.TabIndex = 23;
@@ -102,7 +100,7 @@
             // 
             // tbxTotalQtyPrice
             // 
-            this.tbxTotalQtyPrice.Location = new System.Drawing.Point(274, 340);
+            this.tbxTotalQtyPrice.Location = new System.Drawing.Point(274, 316);
             this.tbxTotalQtyPrice.Name = "tbxTotalQtyPrice";
             this.tbxTotalQtyPrice.Size = new System.Drawing.Size(295, 26);
             this.tbxTotalQtyPrice.TabIndex = 21;
@@ -110,7 +108,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(71, 343);
+            this.label11.Location = new System.Drawing.Point(71, 319);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(140, 20);
             this.label11.TabIndex = 22;
@@ -121,7 +119,7 @@
             this.btnSave.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Perpetua", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(75, 418);
+            this.btnSave.Location = new System.Drawing.Point(75, 394);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(494, 44);
             this.btnSave.TabIndex = 6;
@@ -136,7 +134,8 @@
             "kg",
             "g",
             "pack",
-            "Item"});
+            "Item",
+            "L"});
             this.cmbUnit.Location = new System.Drawing.Point(274, 191);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(295, 28);
@@ -185,18 +184,6 @@
             this.label7.Size = new System.Drawing.Size(45, 20);
             this.label7.TabIndex = 15;
             this.label7.Text = "QTY";
-            // 
-            // lblPrice_of_a_single_item
-            // 
-            this.lblPrice_of_a_single_item.AutoSize = true;
-            this.lblPrice_of_a_single_item.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPrice_of_a_single_item.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPrice_of_a_single_item.Location = new System.Drawing.Point(271, 288);
-            this.lblPrice_of_a_single_item.Name = "lblPrice_of_a_single_item";
-            this.lblPrice_of_a_single_item.Size = new System.Drawing.Size(205, 20);
-            this.lblPrice_of_a_single_item.TabIndex = 14;
-            this.lblPrice_of_a_single_item.Text = "( Price of a single item )";
-            this.lblPrice_of_a_single_item.Visible = false;
             // 
             // label3
             // 
@@ -254,9 +241,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.ClientSize = new System.Drawing.Size(793, 668);
+            this.ClientSize = new System.Drawing.Size(793, 653);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmAddKitchenInventoryDetails";
@@ -272,7 +260,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblPrice_of_a_single_item;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbxUnitPrice;
         private System.Windows.Forms.Label label4;
