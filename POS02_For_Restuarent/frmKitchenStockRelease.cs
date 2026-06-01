@@ -27,7 +27,7 @@ namespace POS02_For_Restuarent
 
         private void tbxSearchByUsingName_Leave(object sender, EventArgs e)
         {
-            tbxSearchByUsingName.Text = "Search";
+            //tbxSearchByUsingName.Text = "Search";
         }
 
         private void frmKitchenStockRelease_Load(object sender, EventArgs e)
@@ -217,6 +217,35 @@ namespace POS02_For_Restuarent
                
             }
 
+        }
+
+        private void tbxSearchByUsingName_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.ds.Tables["TblNames_dst"] != null)
+            {
+                Program.ds.Tables["TblNames_dst"].Clear();
+               
+               
+            }
+
+            lbxItemNames.Items.Clear();
+
+            Program.da = new System.Data.SqlClient.SqlDataAdapter("SELECT ITEM_NAME FROM TblStockManagementDKInventory_use_for_functions WHERE ITEM_NAME LIKE N'%" + tbxSearchByUsingName.Text + "%' ", Program.con);
+            Program.da.Fill(Program.ds, "TblNames_dst");
+
+            foreach (DataRow names in Program.ds.Tables["TblNames_dst"].Rows)
+            {
+                string itemName = names["ITEM_NAME"].ToString();
+
+                if (!lbxItemNames.Items.Contains(itemName))
+                {
+                    lbxItemNames.Items.Add(itemName);
+                }
+
+                
+
+            }
+          
         }
     }
 }

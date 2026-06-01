@@ -216,6 +216,7 @@
             this.tbxSearchByUsingName.TabIndex = 11;
             this.tbxSearchByUsingName.Text = "Search";
             this.tbxSearchByUsingName.Click += new System.EventHandler(this.tbxSearchByUsingName_Click);
+            this.tbxSearchByUsingName.TextChanged += new System.EventHandler(this.tbxSearchByUsingName_TextChanged);
             this.tbxSearchByUsingName.Leave += new System.EventHandler(this.tbxSearchByUsingName_Leave);
             // 
             // lbxItemNames
